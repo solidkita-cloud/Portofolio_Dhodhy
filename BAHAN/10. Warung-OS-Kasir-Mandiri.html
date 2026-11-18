@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warung OS — Kasir Toko Mandiri (Demo Interaktif)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F3F4F6;
+      --surface: #FFFFFF;
+      --ink: #111827;
+      --ink-muted: #6B7280;
+      --primary: #10B981;
+      --primary-dark: #059669;
+      --primary-light: #D1FAE5;
+      --border: #E5E7EB;
+      --radius: 12px;
+      --danger: #EF4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.4;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    /* Protection Notice Floating Pill */
+    .trial-pill {
+      background: #111827;
+      color: #FFFFFF;
+      padding: 6px 16px;
+      font-size: 11.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 100;
+    }
+
+    .trial-pill-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.1); }
+      100% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    .trial-pill a {
+      color: #34D399;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .trial-pill a:hover {
+      text-decoration: underline;
+    }
+
+    /* Top Navigation Header */
+    .pos-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .pos-badge {
+      background: #111827;
+      color: #FFFFFF;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pos-badge span {
+      color: #10B981;
+    }
+
+    .store-info h2 {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .store-info p {
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--ink);
+      background: #F3F4F6;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: #E5E7EB;
+    }
+
+    /* Main POS Layout */
+    .pos-body {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      flex: 1;
+      height: calc(100vh - 85px);
+      overflow: hidden;
+    }
+
+    @media (max-width: 860px) {
+      .pos-body {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow-y: auto;
+      }
+    }
+
+    /* Left Area: Catalog */
+    .catalog-area {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      overflow-y: auto;
+      background: #F9FAFB;
+    }
+
+    .catalog-controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 220px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 9px 12px 9px 36px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      font-size: 13px;
+      font-family: inherit;
+      background: #FFFFFF;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--ink-muted);
+      pointer-events: none;
+    }
+
+    .category-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+
+    .cat-btn {
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      color: var(--ink-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .cat-btn.active {
+      background: #111827;
+      color: #FFFFFF;
+      border-color: #111827;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 12px;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    .product-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .product-card:active {
+      transform: scale(0.98);
+    }
+
+    .prod-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: #F3F4F6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .prod-title {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    .prod-sku {
+      font-size: 10px;
+      color: var(--ink-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .prod-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 4px;
+      border-top: 1px dashed #F3F4F6;
+      padding-top: 6px;
+    }
+
+    .prod-price {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .btn-add-mini {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #111827;
+      color: #FFFFFF;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .product-card:hover .btn-add-mini {
+      background: var(--primary);
+    }
+
+    /* Right Area: Cart Panel */
+    .cart-area {
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .cart-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-header h3 {
+      font-size: 14px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cart-count {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 9999px;
+    }
+
+    .btn-clear {
+      font-size: 11px;
+      color: var(--danger);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-clear:hover {
+      text-decoration: underline;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--ink-muted);
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+    }
+
+    .cart-empty-icon {
+      font-size: 36px;
+      margin-bottom: 8px;
+      opacity: 0.6;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #F9FAFB;
+      border: 1px solid #F3F4F6;
+      gap: 8px;
+    }
+
+    .item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-name {
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .item-unit-price {
+      font-size: 10.5px;
+      color: var(--ink-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .item-qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .qty-btn:hover {
+      background: #E5E7EB;
+    }
+
+    .qty-display {
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      width: 24px;
+      text-align: center;
+    }
+
+    .item-total {
+      font-size: 12px;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      min-width: 65px;
+      text-align: right;
+    }
+
+    /* Cart Summary & Payment */
+    .cart-footer {
+      border-top: 1px solid var(--border);
+      padding: 16px;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .summary-row.total {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink);
+      border-top: 1px dashed var(--border);
+      padding-top: 8px;
+    }
+
+    .summary-row.total .total-amount {
+      color: var(--primary-dark);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .quick-cash {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .cash-btn {
+      padding: 6px 4px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: #F9FAFB;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      transition: all 0.15s;
+    }
+
+    .cash-btn:hover {
+      background: #E5E7EB;
+    }
+
+    .btn-pay {
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+      transition: all 0.2s;
+    }
+
+    .btn-pay:hover:not(:disabled) {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-pay:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* Modal Struk Kasir Thermal */
+    .receipt-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .receipt-modal {
+      background: #FFFFFF;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .receipt-paper {
+      background: #FCFCFA;
+      padding: 24px 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      line-height: 1.4;
+      color: #111827;
+      border-bottom: 2px dashed #E5E7EB;
+      position: relative;
+    }
+
+    .receipt-watermark-stamp {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-25deg);
+      border: 2px dashed #EF4444;
+      color: #EF4444;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      pointer-events: none;
+      opacity: 0.35;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .receipt-header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .receipt-store-title {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .receipt-store-sub {
+      font-size: 9.5px;
+      color: #6B7280;
+    }
+
+    .receipt-divider {
+      border: none;
+      border-top: 1px dashed #9CA3AF;
+      margin: 8px 0;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 3px 0;
+    }
+
+    .receipt-bold {
+      font-weight: 700;
+    }
+
+    .receipt-actions {
+      padding: 12px 16px;
+      background: #F3F4F6;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-receipt-action {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-print-receipt {
+      background: #111827;
+      color: #FFFFFF;
+    }
+
+    .btn-close-receipt {
+      background: #FFFFFF;
+      color: #111827;
+      border: 1px solid var(--border);
+    }
+
+    /* Modal Lockout 24 Jam */
+    .lockout-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.95);
+      z-index: 300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .lockout-box {
+      max-width: 440px;
+      background: #1F2937;
+      border: 1px solid #374151;
+      border-radius: 16px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .lock-icon-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(239, 68, 68, 0.15);
+      color: #EF4444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+    }
+
+    .lockout-box h2 {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .lockout-box p {
+      font-size: 13px;
+      color: #9CA3AF;
+      line-height: 1.5;
+    }
+
+    .btn-wa-lockout {
+      background: #10B981;
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 13.5px;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .btn-wa-lockout:hover {
+      background: #059669;
+    }
+  </style>
+</head>
+<body oncontextmenu="return false;">
+
+  <!-- Trial Protection Bar -->
+  <div class="trial-pill">
+    <div class="trial-pill-left">
+      <div class="pulse-dot"></div>
+      <span>Mode Uji Coba Interaktif: <strong id="timer-display">23:59:59</strong></span>
+    </div>
+    <div>
+      <a href="https://wa.me/6287703397035?text=Halo%20Mas%20Dhodhy%2C%20saya%20tertarik%20pasang%20sistem%20Warung%20OS%20untuk%20toko%20saya..." target="_blank">
+        Mau Pasang di Tokomu? Chat WA Mas Dhodhy &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="pos-header">
+    <div class="brand-section" id="logo-trigger" title="Klik 3x untuk reset dev mode">
+      <div class="pos-badge">
+        <span>WARUNG</span>OS
+      </div>
+      <div class="store-info">
+        <h2>Toko Plastik & Retail Mandiri</h2>
+        <p>Kasir Offline Rp 0 Biaya Bulanan • Sidoarjo</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="../index.html" class="btn-nav">
+        &larr; Kembali ke Portofolio
+      </a>
+    </div>
+  </header>
+
+  <!-- POS Body -->
+  <main class="pos-body">
+    <!-- Left: Product Catalog -->
+    <section class="catalog-area">
+      <div class="catalog-controls">
+        <div class="search-box">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" class="search-input" id="search-input" placeholder="Cari nama barang atau ketik barcode...">
+        </div>
+        <div class="category-tabs" id="category-tabs">
+          <button class="cat-btn active" data-cat="all">Semua Produk</button>
+          <button class="cat-btn" data-cat="plastik">Plastik & Mika</button>
+          <button class="cat-btn" data-cat="toko">Perlengkapan Toko</button>
+          <button class="cat-btn" data-cat="kemasan">Dus & Kertas</button>
+        </div>
+      </div>
+
+      <div class="product-grid" id="product-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Right: Cart & Payment -->
+    <aside class="cart-area">
+      <div class="cart-header">
+        <h3>
+          Keranjang Kasir
+          <span class="cart-count" id="cart-badge">0 item</span>
+        </h3>
+        <button class="btn-clear" id="btn-clear-cart">Kosongkan</button>
+      </div>
+
+      <div class="cart-items" id="cart-items-container">
+        <!-- Empty or Items -->
+        <div class="cart-empty" id="cart-empty-state">
+          <div class="cart-empty-icon">🛒</div>
+          <strong>Keranjang Masih Kosong</strong>
+          <span>Klik produk di sebelah kiri untuk memasukkan ke keranjang transaksi</span>
+        </div>
+      </div>
+
+      <div class="cart-footer">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="txt-subtotal" style="font-family: 'JetBrains Mono', monospace;">Rp 0</span>
+        </div>
+        <div class="summary-row">
+          <span>Diskon Pelanggan</span>
+          <span style="font-family: 'JetBrains Mono', monospace;">Rp 0</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total Bayar</span>
+          <span class="total-amount" id="txt-total">Rp 0</span>
+        </div>
+
+        <div>
+          <div style="font-size: 10px; font-weight: 700; color: var(--ink-muted); margin-bottom: 4px;">UANG DITERIMA CEPAT:</div>
+          <div class="quick-cash">
+            <button class="cash-btn" data-cash="pas">Uang Pas</button>
+            <button class="cash-btn" data-cash="50000">50.000</button>
+            <button class="cash-btn" data-cash="100000">100.000</button>
+            <button class="cash-btn" data-cash="200000">200.000</button>
+          </div>
+        </div>
+
+        <button class="btn-pay" id="btn-pay" disabled>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+          Bayar & Cetak Struk (Dummy)
+        </button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Modal Struk Thermal -->
+  <div class="receipt-modal-overlay" id="receipt-modal">
+    <div class="receipt-modal">
+      <div class="receipt-paper" id="receipt-content">
+        <div class="receipt-watermark-stamp">
+          DUMMY TRIAL VERSION<br>087703397035
+        </div>
+
+        <div class="receipt-header">
+          <div class="receipt-store-title">TOKO PLASTIK MANDIRI</div>
+          <div class="receipt-store-sub">Jl. Raya Sidoarjo No. 88, Jawa Timur</div>
+          <div class="receipt-store-sub">Telp / WA: 0877-0339-7035</div>
+        </div>
+
+        <hr class="receipt-divider">
+
+        <div class="receipt-row">
+          <span id="rcpt-no">No: TR-94821</span>
+          <span id="rcpt-time">18/11/26 14:00</span>
+        </div>
+        <div class="receipt-row">
+          <span>Kasir: Admin Toko</span>
+          <span>Status: LUNAS</span>
+        </div>
+
+        <hr class="receipt-divider">
+
+        <div id="rcpt-items-list">
+          <!-- Item rows -->
+        </div>
+
+        <hr class="receipt-divider">
+
+        <div class="receipt-row">
+          <span>Subtotal:</span>
+          <span id="rcpt-subtotal">Rp 0</span>
+        </div>
+        <div class="receipt-row receipt-bold" style="font-size: 13px;">
+          <span>TOTAL:</span>
+          <span id="rcpt-total">Rp 0</span>
+        </div>
+        <div class="receipt-row">
+          <span>Bayar (Tunai):</span>
+          <span id="rcpt-pay">Rp 0</span>
+        </div>
+        <div class="receipt-row">
+          <span>Kembalian:</span>
+          <span id="rcpt-change">Rp 0</span>
+        </div>
+
+        <hr class="receipt-divider">
+
+        <div style="text-align: center; font-size: 9px; color: #4B5563; margin-top: 6px;">
+          * Terima kasih atas kunjungan Anda *<br>
+          Barang yang sudah dibeli tidak dapat ditukar<br>
+          <strong style="color: #111827;">Sistem Kasir Mandiri by Dhodhy Rahmaddi</strong>
+        </div>
+      </div>
+
+      <div class="receipt-actions">
+        <button class="btn-receipt-action btn-close-receipt" id="btn-close-receipt">Tutup</button>
+        <button class="btn-receipt-action btn-print-receipt" id="btn-print-receipt">🖨️ Cetak Fisik</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 24-Jam Lockout -->
+  <div class="lockout-modal" id="lockout-modal">
+    <div class="lockout-box">
+      <div class="lock-icon-badge">⏱️</div>
+      <h2>Masa Uji Coba 24 Jam Selesai</h2>
+      <p>Sesi interaktif untuk perangkat ini telah berakhir. Sistem Warung OS ini dirancang untuk operasional toko fisik nyata tanpa ketergantungan biaya langganan bulanan.</p>
+      <a href="https://wa.me/6287703397035?text=Halo%20Mas%20Dhodhy%2C%20masa%20uji%20coba%20Warung%20OS%20saya%20sudah%20selesai.%20Saya%20tertarik%20pasang%20sistem%20ini%20di%20toko%20saya..." class="btn-wa-lockout" target="_blank">
+        Hubungi Mas Dhodhy via WhatsApp &rarr;
+      </a>
+      <span style="font-size: 11px; color: #6B7280; cursor: pointer;" onclick="document.location.href='../index.html'">&larr; Kembali ke Portofolio Utama</span>
+    </div>
+  </div>
+
+  <!-- Audio Engine & Script -->
+  <script>
+    (function() {
+      // 1. Data Produk Realistis Toko Plastik & Retail
+      const PRODUCTS = [
+        { id: 1, name: 'Plastik Mika 100pcs (Tebal)', sku: 'MK-100', price: 18000, cat: 'plastik', icon: '📦' },
+        { id: 2, name: 'Kresek HD Sedang Putih (Ikat)', sku: 'KR-HD-M', price: 12500, cat: 'plastik', icon: '🛍️' },
+        { id: 3, name: 'Tali Rafia Super 1kg', sku: 'RAF-01', price: 16000, cat: 'toko', icon: '🧶' },
+        { id: 4, name: 'Kertas Nasi Cokelat Gajah (Rim)', sku: 'KRT-GJH', price: 24000, cat: 'kemasan', icon: '📄' },
+        { id: 5, name: 'Sedotan Steril Lancip 500pcs', sku: 'SDT-500', price: 9500, cat: 'plastik', icon: '🥤' },
+        { id: 6, name: 'Dus Snack Box Motif (Pak 50)', sku: 'SB-MTF', price: 35000, cat: 'kemasan', icon: '🍱' },
+        { id: 7, name: 'Lakban Bening 2 Inch 100 Yard', sku: 'LKB-100', price: 8500, cat: 'toko', icon: '🩹' },
+        { id: 8, name: 'Kantong Sampah Hitam Jumbo', sku: 'KNT-JMB', price: 22000, cat: 'plastik', icon: '🗑️' },
+        { id: 9, name: 'Cup Sealer Roll Polos 1200 Cup', sku: 'CUP-120', price: 65000, cat: 'kemasan', icon: '🧋' }
+      ];
+
+      let cart = [];
+      let currentCat = 'all';
+      let transactionsCount = 0;
+      const MAX_DEMO_TRANSACTIONS = 5;
+
+      // 2. Timer 24 Jam Engine
+      const TRIAL_DURATION_MS = 24 * 60 * 60 * 1000; // 24 hours
+      let trialStart = localStorage.getItem('dhodhy_warung_trial_start');
+      if (!trialStart) {
+        trialStart = Date.now().toString();
+        localStorage.setItem('dhodhy_warung_trial_start', trialStart);
+      }
+
+      function checkTrialExpiry() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('dev') === 'dhodhy') return false; // Dev bypass
+
+        const elapsed = Date.now() - parseInt(trialStart, 10);
+        if (elapsed >= TRIAL_DURATION_MS) {
+          document.getElementById('lockout-modal').style.display = 'flex';
+          return true;
+        }
+
+        const remainingMs = TRIAL_DURATION_MS - elapsed;
+        const hours = Math.floor(remainingMs / (1000 * 60 * 60));
+        const mins = Math.floor((remainingMs % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((remainingMs % (1000 * 60)) / 1000);
+        
+        const pad = (n) => String(n).padStart(2, '0');
+        const timerEl = document.getElementById('timer-display');
+        if (timerEl) {
+          timerEl.textContent = `${pad(hours)}:${pad(mins)}:${pad(secs)}`;
+        }
+        return false;
+      }
+
+      setInterval(checkTrialExpiry, 1000);
+      checkTrialExpiry();
+
+      // 3. Audio Chime (Printer Struk Kasir) via Web Audio API
+      function playCashierChime() {
+        try {
+          const ctx = new (window.AudioContext || window.webkitAudioContext)();
+          const now = ctx.currentTime;
+          
+          // Noise burst (thermal paper feed sound)
+          const bufferSize = ctx.sampleRate * 0.15;
+          const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+          const output = noiseBuffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1;
+          }
+          const whiteNoise = ctx.createBufferSource();
+          whiteNoise.buffer = noiseBuffer;
+          const noiseFilter = ctx.createBiquadFilter();
+          noiseFilter.type = 'bandpass';
+          noiseFilter.frequency.value = 1200;
+          const noiseGain = ctx.createGain();
+          noiseGain.gain.setValueAtTime(0.08, now);
+          noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+          whiteNoise.connect(noiseFilter);
+          noiseFilter.connect(noiseGain);
+          noiseGain.connect(ctx.destination);
+          whiteNoise.start(now);
+
+          // Ding chime!
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(987.77, now + 0.16); // B5
+          gain.gain.setValueAtTime(0.12, now + 0.16);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + 0.16);
+          osc.stop(now + 0.55);
+        } catch(e) {}
+      }
+
+      function formatRp(num) {
+        return 'Rp ' + Number(num).toLocaleString('id-ID');
+      }
+
+      // 4. Render Catalog
+      const grid = document.getElementById('product-grid');
+      const searchInput = document.getElementById('search-input');
+
+      function renderProducts() {
+        grid.innerHTML = '';
+        const query = searchInput.value.toLowerCase().trim();
+        
+        const filtered = PRODUCTS.filter(p => {
+          const matchCat = (currentCat === 'all' || p.cat === currentCat);
+          const matchSearch = (p.name.toLowerCase().includes(query) || p.sku.toLowerCase().includes(query));
+          return matchCat && matchSearch;
+        });
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 30px; color: #6B7280; font-size: 13px;">Barang tidak ditemukan. Coba ketik kata kunci lain.</div>';
+          return;
+        }
+
+        filtered.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.innerHTML = `
+            <div>
+              <div class="prod-icon-box">${p.icon}</div>
+              <div class="prod-title">${p.name}</div>
+              <div class="prod-sku">SKU: ${p.sku}</div>
+            </div>
+            <div class="prod-price-row">
+              <span class="prod-price">${formatRp(p.price)}</span>
+              <button class="btn-add-mini" title="Tambah ke keranjang">+</button>
+            </div>
+          `;
+          card.addEventListener('click', () => addToCart(p));
+          grid.appendChild(card);
+        });
+      }
+
+      // 5. Cart Management
+      const cartItemsContainer = document.getElementById('cart-items-container');
+      const cartEmptyState = document.getElementById('cart-empty-state');
+      const cartBadge = document.getElementById('cart-badge');
+      const txtSubtotal = document.getElementById('txt-subtotal');
+      const txtTotal = document.getElementById('txt-total');
+      const btnPay = document.getElementById('btn-pay');
+
+      function addToCart(product) {
+        if (checkTrialExpiry()) return;
+
+        const existing = cart.find(item => item.id === product.id);
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ ...product, qty: 1 });
+        }
+        updateCartUI();
+      }
+
+      function changeQty(id, delta) {
+        const item = cart.find(i => i.id === id);
+        if (!item) return;
+        item.qty += delta;
+        if (item.qty <= 0) {
+          cart = cart.filter(i => i.id !== id);
+        }
+        updateCartUI();
+      }
+
+      function updateCartUI() {
+        const totalItems = cart.reduce((acc, i) => acc + i.qty, 0);
+        const subtotal = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+
+        cartBadge.textContent = totalItems + ' item';
+        txtSubtotal.textContent = formatRp(subtotal);
+        txtTotal.textContent = formatRp(subtotal);
+        btnPay.disabled = (cart.length === 0);
+
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = '';
+          cartItemsContainer.appendChild(cartEmptyState);
+          return;
+        }
+
+        cartItemsContainer.innerHTML = '';
+        cart.forEach(item => {
+          const itemEl = document.createElement('div');
+          itemEl.className = 'cart-item';
+          itemEl.innerHTML = `
+            <div class="item-info">
+              <div class="item-name">${item.name}</div>
+              <div class="item-unit-price">${formatRp(item.price)}</div>
+            </div>
+            <div class="item-qty-controls">
+              <button class="qty-btn" onclick="event.stopPropagation(); changeQty(${item.id}, -1)">-</button>
+              <span class="qty-display">${item.qty}</span>
+              <button class="qty-btn" onclick="event.stopPropagation(); changeQty(${item.id}, 1)">+</button>
+            </div>
+            <div class="item-total">${formatRp(item.price * item.qty)}</div>
+          `;
+          cartItemsContainer.appendChild(itemEl);
+        });
+      }
+      window.changeQty = changeQty;
+
+      document.getElementById('btn-clear-cart').addEventListener('click', () => {
+        cart = [];
+        updateCartUI();
+      });
+
+      // Quick cash buttons
+      document.querySelectorAll('.cash-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = btn.dataset.cash;
+          const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+          if (val === 'pas') {
+            openPaymentModal(total);
+          } else {
+            openPaymentModal(Number(val));
+          }
+        });
+      });
+
+      btnPay.addEventListener('click', () => {
+        const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+        openPaymentModal(total);
+      });
+
+      // 6. Payment & Struk Generation
+      function openPaymentModal(cashAmount) {
+        if (checkTrialExpiry()) return;
+        if (cart.length === 0) return;
+
+        transactionsCount++;
+        if (transactionsCount > MAX_DEMO_TRANSACTIONS) {
+          alert('Batas 5x uji coba transaksi kasir telah tercapai.\n\nUntuk penggunaan tanpa batas di tokomu, hubungi Mas Dhodhy.');
+          document.getElementById('lockout-modal').style.display = 'flex';
+          return;
+        }
+
+        const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+        const change = Math.max(0, cashAmount - total);
+
+        // Fill receipt data
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: '2-digit' }) + ' ' + 
+                        now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+        
+        document.getElementById('rcpt-no').textContent = 'No: TR-' + Math.floor(10000 + Math.random() * 90000);
+        document.getElementById('rcpt-time').textContent = dateStr;
+
+        const listEl = document.getElementById('rcpt-items-list');
+        listEl.innerHTML = '';
+        cart.forEach(item => {
+          const row = document.createElement('div');
+          row.style.marginBottom = '4px';
+          row.innerHTML = `
+            <div>${item.name}</div>
+            <div class="receipt-row" style="color: #4B5563; font-size: 10px;">
+              <span>${item.qty} x ${formatRp(item.price)}</span>
+              <span>${formatRp(item.price * item.qty)}</span>
+            </div>
+          `;
+          listEl.appendChild(row);
+        });
+
+        document.getElementById('rcpt-subtotal').textContent = formatRp(total);
+        document.getElementById('rcpt-total').textContent = formatRp(total);
+        document.getElementById('rcpt-pay').textContent = formatRp(cashAmount);
+        document.getElementById('rcpt-change').textContent = formatRp(change);
+
+        playCashierChime();
+        document.getElementById('receipt-modal').style.display = 'flex';
+      }
+
+      document.getElementById('btn-close-receipt').addEventListener('click', () => {
+        document.getElementById('receipt-modal').style.display = 'none';
+        cart = [];
+        updateCartUI();
+      });
+
+      document.getElementById('btn-print-receipt').addEventListener('click', () => {
+        window.print();
+      });
+
+      // 7. Categories filter
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCat = btn.dataset.cat;
+          renderProducts();
+        });
+      });
+
+      searchInput.addEventListener('input', renderProducts);
+
+      // 8. Secret dev bypass (click logo 3x)
+      let clickCount = 0;
+      document.getElementById('logo-trigger').addEventListener('click', () => {
+        clickCount++;
+        if (clickCount >= 3) {
+          localStorage.setItem('dhodhy_warung_trial_start', Date.now().toString());
+          alert('🛠️ Mode Developer Aktif:\nTimer uji coba 24 jam berhasil direset kembali ke awal!');
+          document.getElementById('lockout-modal').style.display = 'none';
+          clickCount = 0;
+        }
+      });
+
+      // 9. Anti-Inspect & Anti-Theft Protection
+      document.addEventListener('keydown', (e) => {
+        // Block F12, Ctrl+U, Ctrl+S, Ctrl+Shift+I, Ctrl+Shift+C
+        if (
+          e.key === 'F12' ||
+          (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'U' || e.key === 'S')) ||
+          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J'))
+        ) {
+          e.preventDefault();
+          return false;
+        }
+      });
+
+      // Initial Render
+      renderProducts();
+    })();
+  </script>
+</body>
+</html>

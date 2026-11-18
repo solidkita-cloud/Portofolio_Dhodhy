@@ -1,0 +1,69 @@
+/* Custom styles for Dhodhy Rahmaddi Portfolio */
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #06090f;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* Native Dialog Polish */
+dialog {
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+
+dialog[open] {
+  animation: modal-appear 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Mockup Browser styling */
+.mockup-browser {
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover .mockup-browser {
+  transform: translateY(-2px);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* Subtle glow pulse */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+}
+
+.animate-glow {
+  animation: pulse-subtle 4s infinite ease-in-out;
+}
+
+/* Smooth button focus */
+button:focus-visible, a:focus-visible {
+  outline: 2px solid #10B981;
+  outline-offset: 2px;
+}

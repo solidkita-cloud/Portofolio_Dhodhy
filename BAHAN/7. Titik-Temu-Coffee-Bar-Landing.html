@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titik Temu Coffee Bar — Seduhan Presisi & Ruang Singgah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            coffee: {
+              caramel: '#C2612D',
+              dark: '#1E130D',
+              foam: '#FBF7F0',
+              crema: '#ECE3D4',
+              muted: '#6E5345',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FBF7F0;
+      color: #1E130D;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .coffee-pattern {
+      background-image: radial-gradient(#C2612D 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+  </style>
+</head>
+<body class="coffee-pattern min-h-screen pb-24 selection:bg-[#C2612D] selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-40 bg-[#FBF7F0]/90 backdrop-blur-md border-b border-[#1E130D]/15">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-2xl bg-[#C2612D] text-white flex items-center justify-center text-xl shadow-[2px_2px_0_#1E130D] border-2 border-[#1E130D] -rotate-2">
+          ☕
+        </div>
+        <div>
+          <div class="font-extrabold text-lg sm:text-xl tracking-tight leading-none text-[#1E130D] flex items-center gap-1.5">
+            <span>Titik Temu</span>
+            <span class="text-[10px] font-bold bg-[#ECE3D4] text-[#1E130D] px-2 py-0.5 rounded-full border border-[#1E130D] uppercase">
+              Coffee Bar
+            </span>
+          </div>
+          <p class="text-[11px] text-[#6E5345] font-medium">Seduhan biji Nusantara & ruang singgah • Sidoarjo</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <button onclick="openQrModal()" class="cursor-pointer px-3 py-1.5 rounded-full bg-white text-[#1E130D] border-2 border-[#1E130D] text-xs font-bold shadow-[2px_2px_0_#1E130D] hover:bg-[#ECE3D4] transition flex items-center gap-1.5">
+          <span>📱</span>
+          <span class="hidden sm:inline">QR Cup & Bar</span>
+        </button>
+
+        <a href="#customizer" class="cursor-pointer px-3.5 py-1.5 rounded-full bg-[#C2612D] text-white border-2 border-[#1E130D] text-xs font-bold shadow-[2px_2px_0_#1E130D] hover:bg-[#A84F20] transition flex items-center gap-1.5">
+          <span>☕</span>
+          <span>Racik Kopi</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-5xl mx-auto px-4 pt-6 space-y-12">
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-white rounded-[32px] border-3 border-[#1E130D] shadow-[8px_8px_0_#1E130D] p-6 sm:p-10 overflow-hidden">
+      <div class="grid md:grid-cols-[1.1fr_0.9fr] gap-8 items-center">
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 bg-[#ECE3D4] text-[#1E130D] border-2 border-[#1E130D] px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-[#C2612D] animate-ping"></span>
+            <span>Grinder On Jam 7 Pagi • Last Order 22.00 WIB</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-black leading-[1.08] tracking-tight text-[#1E130D]">
+            Dunia lagi ribut, <span class="text-[#C2612D] underline decoration-[#ECE3D4] decoration-4 underline-offset-4">kopimu jangan</span> ikutan buru-buru. ☕🌿
+          </h1>
+
+          <p class="text-sm sm:text-base text-[#6E5345] leading-relaxed font-medium">
+            Bukan kopi sachet kemanisan. Biji arabika & robusta lokal pilihan dari petani Gayo dan Flores Bajawa, diekstraksi presisi dengan mesin espresso dan tangan dingin barista kami.
+          </p>
+
+          <div class="flex flex-wrap gap-2 pt-1 text-xs font-bold">
+            <span class="bg-[#FBF7F0] border border-[#1E130D]/20 px-3 py-1 rounded-full">🌱 100% Single Origin Lokal</span>
+            <span class="bg-[#FBF7F0] border border-[#1E130D]/20 px-3 py-1 rounded-full">⚖️ Kalibrasi Grinder Harian</span>
+            <span class="bg-[#FBF7F0] border border-[#1E130D]/20 px-3 py-1 rounded-full">🥥 Gula Aren Organik</span>
+          </div>
+
+          <div class="pt-2 flex flex-wrap items-center gap-3">
+            <a href="#customizer" class="cursor-pointer bg-[#C2612D] hover:bg-[#A84F20] text-white px-6 py-3 rounded-full font-bold text-sm border-2 border-[#1E130D] shadow-[4px_4px_0_#1E130D] active:translate-y-0.5 transition flex items-center gap-2">
+              <span>☕</span>
+              <span>Racik Kopi Sendiri (Customizer)</span>
+            </a>
+            <a href="#menu-catalog" class="cursor-pointer bg-white hover:bg-gray-50 text-[#1E130D] px-5 py-3 rounded-full font-bold text-sm border-2 border-[#1E130D] shadow-[3px_3px_0_#1E130D] active:translate-y-0.5 transition">
+              Buku Menu Barista
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT ICED GLASS SHOWCASE -->
+        <div class="flex justify-center">
+          <div class="relative w-64 sm:w-76 aspect-square bg-[#ECE3D4] rounded-[36px] border-3 border-[#1E130D] p-5 shadow-[6px_6px_0_#1E130D] -rotate-2 flex flex-col justify-between overflow-hidden">
+            <div class="flex items-center justify-between text-xs font-bold">
+              <span class="bg-white text-[#1E130D] px-2.5 py-0.5 rounded-full border border-[#1E130D]">⭐ 4.9 • House Blend</span>
+              <span class="text-[#C2612D] font-extrabold">Cold Extracted</span>
+            </div>
+
+            <div class="relative my-auto flex items-center justify-center">
+              <svg viewBox="0 0 160 200" class="w-36 sm:w-40 h-48 drop-shadow-xl">
+                <path d="M 30 20 L 40 180 C 40 190, 120 190, 120 180 L 130 20 Z" fill="rgba(255,255,255,0.7)" stroke="#1E130D" stroke-width="5"/>
+                <path d="M 36 120 L 41 178 C 41 185, 119 185, 119 178 L 124 120 Z" fill="#FFFBF2"/>
+                <path d="M 33 50 L 36 120 C 60 130, 100 110, 124 120 L 127 50 Z" fill="#C2612D"/>
+                <ellipse cx="80" cy="50" rx="46" ry="10" fill="#E8A856" stroke="#1E130D" stroke-width="4"/>
+                <rect x="55" y="65" width="22" height="22" rx="4" fill="rgba(255,255,255,0.85)" stroke="#1E130D" stroke-width="3" transform="rotate(15 55 65)"/>
+                <rect x="85" y="80" width="24" height="24" rx="4" fill="rgba(255,255,255,0.85)" stroke="#1E130D" stroke-width="3" transform="rotate(-20 85 80)"/>
+                <line x1="88" y1="10" x2="68" y2="170" stroke="#7A5230" stroke-width="8" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <div class="bg-white rounded-2xl p-2.5 border-2 border-[#1E130D] text-center shadow-xs">
+              <div class="font-extrabold text-xs text-[#1E130D]">Es Kopi Susu Titik Temu</div>
+              <div class="text-[10px] text-[#6E5345] font-bold">Gayo Espresso + Aren + Fresh Milk (Rp 18K)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: BARISTA DRINK CUSTOMIZER -->
+    <section id="customizer" class="scroll-mt-24 space-y-4">
+      <div class="bg-white rounded-[32px] border-3 border-[#1E130D] shadow-[8px_8px_0_#1E130D] p-6 sm:p-8 space-y-6">
+        <div class="border-b-2 border-[#1E130D]/10 pb-4">
+          <div className="inline-flex items-center gap-1.5 bg-[#C2612D] text-white px-3 py-0.5 rounded-full text-[11px] font-extrabold uppercase border border-[#1E130D]">
+            ☕ Racikan Sesuai Mood-mu
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-[#1E130D] mt-1">Barista Interactive Customizer</h2>
+          <p class="text-xs sm:text-sm text-[#6E5345]">Pilih kopi dasar, atur susu, level manis, es, dan ekstra shot. Barista meracik sesuai pesananmu.</p>
+        </div>
+
+        <!-- 1. Pick Drink Base -->
+        <div class="space-y-2">
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-[#6E5345]">1. Pilih Kopi Dasar:</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="base-drinks-grid">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- 2 & 3: Milk & Sweetness -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+          <div class="space-y-2">
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-[#6E5345]">2. Pilihan Susu:</label>
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="setMilk('fresh')" id="milk-fresh" class="p-2.5 rounded-xl text-xs font-bold border-2 bg-[#C2612D] text-white border-[#1E130D]">🥛 Fresh Milk</button>
+              <button onclick="setMilk('oat')" id="milk-oat" class="p-2.5 rounded-xl text-xs font-bold border-2 bg-white text-[#1E130D] border-gray-300">🌾 Oatmilk (+4K)</button>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-[#6E5345]">3. Tingkat Kemanisan:</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setSugar('normal')" id="sugar-normal" class="p-2.5 rounded-xl text-xs font-bold border-2 bg-[#1E130D] text-white border-[#1E130D]">Normal 100%</button>
+              <button onclick="setSugar('less')" id="sugar-less" class="p-2.5 rounded-xl text-xs font-bold border-2 bg-white text-[#1E130D] border-gray-300">Less 50%</button>
+              <button onclick="setSugar('zero')" id="sugar-zero" class="p-2.5 rounded-xl text-xs font-bold border-2 bg-white text-[#1E130D] border-gray-300">No Sugar 0%</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 & 5: Ice & Extra Shot -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+          <div class="space-y-2">
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-[#6E5345]">4. Suhu / Es:</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setIce('normal')" id="ice-normal" class="p-2 rounded-xl text-xs font-bold border-2 bg-[#1E130D] text-white border-[#1E130D]">🧊 Normal Ice</button>
+              <button onclick="setIce('less')" id="ice-less" class="p-2 rounded-xl text-xs font-bold border-2 bg-white text-[#1E130D] border-gray-300">💧 Less Ice</button>
+              <button onclick="setIce('hot')" id="ice-hot" class="p-2 rounded-xl text-xs font-bold border-2 bg-white text-[#1E130D] border-gray-300">♨️ Hangat</button>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="block text-xs font-extrabold uppercase tracking-wider text-[#6E5345]">5. Ekstra Shot Espresso:</label>
+            <button onclick="toggleExtraShot()" id="btn-extra-shot" class="w-full cursor-pointer p-2.5 rounded-xl text-xs font-bold border-2 flex items-center justify-between bg-white border-gray-300 text-gray-700">
+              <span>☕ +1 Shot Espresso Gayo (+4K)</span>
+              <span id="extra-shot-check" class="w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center text-[10px]"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ACTION BAR -->
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 bg-[#FBF7F0] rounded-2xl p-4 border border-[#1E130D]/15">
+          <div>
+            <div class="text-xs text-[#6E5345]">Total Racikan Spesial:</div>
+            <div id="custom-total-display" class="text-2xl font-black text-[#1E130D]">Rp 18.000</div>
+          </div>
+          <button onclick="sendCustomOrderWA()" class="w-full sm:w-auto cursor-pointer bg-[#C2612D] hover:bg-[#A84F20] text-white font-extrabold text-sm px-7 py-3 rounded-full border-2 border-[#1E130D] shadow-[4px_4px_0_#1E130D] transition flex items-center justify-center gap-2">
+            <span>💬</span>
+            <span>Pesan Racikan via WhatsApp</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: MENU ETALASE CATALOG -->
+    <section id="menu-catalog" class="scroll-mt-24 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b-2 border-[#1E130D]/10 pb-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 bg-[#ECE3D4] text-[#1E130D] px-3 py-0.5 rounded-full text-[11px] font-extrabold uppercase border border-[#1E130D]/40">
+            ☕ Etalase Lengkap
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-[#1E130D] mt-1">Kopi, Non-Coffee, Pastry & Literan</h2>
+        </div>
+
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
+          <button onclick="filterCatalog('all')" class="cat-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-[#1E130D] text-white shadow-[2px_2px_0_#C2612D]" data-cat="all">✨ Semua</button>
+          <button onclick="filterCatalog('espresso')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-white text-[#1E130D] border border-[#1E130D]/20" data-cat="espresso">☕ Kopi</button>
+          <button onclick="filterCatalog('noncoffee')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-white text-[#1E130D] border border-[#1E130D]/20" data-cat="noncoffee">🍵 Non-Coffee</button>
+          <button onclick="filterCatalog('pastry')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-white text-[#1E130D] border border-[#1E130D]/20" data-cat="pastry">🥐 Pastry</button>
+          <button onclick="filterCatalog('literan')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-white text-[#1E130D] border border-[#1E130D]/20" data-cat="literan">🍾 1 Liter</button>
+        </div>
+      </div>
+
+      <div id="catalog-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- SECTION 4: SMART SLEEVE QR -->
+    <section class="bg-[#1E130D] text-white rounded-[32px] p-6 sm:p-10 border-3 border-[#1E130D] shadow-[8px_8px_0_#C2612D] space-y-6">
+      <div class="grid md:grid-cols-[1.1fr_0.9fr] gap-8 items-center">
+        <div class="space-y-4">
+          <span class="bg-[#ECE3D4] text-[#1E130D] px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider border border-white">
+            🎵 Barista Digital Ecosystem
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black text-white leading-tight">
+            Barcode di Sleeve Cup: Sekali Scan Buka Playlist & Stempel Kopi Gratis!
+          </h2>
+          <p class="text-sm text-white/80 leading-relaxed">
+            Di setiap cup Titik Temu terpasang QR sleeve cerdas. Sambil ngopi di meja atau kantor, pelanggan tinggal scan untuk mendengarkan kurasi lagu santai barista + mencatat poin stempel ngopi. 8 cup terkumpul = gratis 1 cup kopi signature!
+          </p>
+          <div class="pt-1">
+            <button onclick="openQrModal()" class="cursor-pointer bg-[#C2612D] hover:bg-[#A84F20] text-white font-black text-xs sm:text-sm px-6 py-2.5 rounded-full border-2 border-white shadow-[3px_3px_0_white] transition">
+              Simulasikan Scan Cup Sleeve ☕
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-[#FBF7F0] text-[#1E130D] rounded-3xl p-6 border-3 border-white shadow-xl text-center space-y-3 rotate-1">
+          <div class="text-xs font-black uppercase tracking-wider text-[#C2612D]">SLEEVE CUP TITIK TEMU</div>
+          <div class="w-36 h-36 mx-auto bg-white rounded-2xl border-2 border-[#1E130D] grid place-items-center text-4xl shadow-inner">
+            ☕
+          </div>
+          <div class="font-mono text-xs font-extrabold text-[#1E130D]">ID: TEMU-CUP-210</div>
+          <p class="text-[11px] text-[#6E5345]">“Halo Barista! Kirim 1 Liter Kopi Susu Aren ke kantor yaa!”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-8 border-t-2 border-[#1E130D]/15 text-center text-xs text-[#6E5345] space-y-3">
+      <div class="flex items-center justify-center gap-2">
+        <span class="font-extrabold text-sm text-[#1E130D]">Titik Temu Coffee Bar</span>
+        <span>•</span>
+        <span>Jl. Pahlawan No. 45, Sidoarjo</span>
+        <span>•</span>
+        <span class="font-bold text-[#C2612D]">Buka 07.00 - 22.00 WIB</span>
+      </div>
+      <p>© 2026 Titik Temu Coffee Bar. Seduhan presisi dengan biji kopi petani Nusantara.</p>
+    </footer>
+  </main>
+
+  <!-- QR MODAL POPUP -->
+  <div id="qr-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border-3 border-[#1E130D] p-6 max-w-sm w-full shadow-[8px_8px_0_#C2612D] space-y-4 text-center">
+      <div class="w-12 h-12 rounded-full bg-[#ECE3D4] border-2 border-[#1E130D] grid place-items-center text-2xl mx-auto">
+        ☕
+      </div>
+      <h3 class="font-black text-xl text-[#1E130D]">Halo Teman Ngopi! Selamat Datang!</h3>
+      <p class="text-xs text-[#6E5345]">Kamu memindai barcode di sleeve cup kopi Titik Temu. Minuman favoritmu sebelumnya: <strong>Es Kopi Susu Titik Temu (Less Sugar)</strong>.</p>
+      
+      <div class="bg-[#FBF7F0] rounded-2xl p-3 border border-[#C2612D]/30 text-left text-xs space-y-1">
+        <div class="font-bold text-[#1E130D]">☕ Status Kartu Stempel Ngopi:</div>
+        <div class="text-[#C2612D] font-extrabold">6 dari 8 Stempel Terkumpul!</div>
+        <div class="text-[11px] text-gray-600">Beli 2 cup lagi untuk klaim 1 Manual Brew / Kopi Susu Gratis!</div>
+      </div>
+
+      <button onclick="repeatOrderWA()" class="w-full cursor-pointer bg-[#C2612D] hover:bg-[#A84F20] text-white py-2.5 rounded-full font-extrabold text-xs border-2 border-[#1E130D] shadow-[2px_2px_0_#1E130D] transition">
+        Pesan Ulang Kopi Kemarin via WA 💬
+      </button>
+
+      <button onclick="closeQrModal()" class="text-xs text-gray-500 hover:text-black font-bold cursor-pointer">
+        Tutup
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const COFFEE_MENU = [
+      { id: 'c1', name: 'Es Kopi Susu Titik Temu', category: 'espresso', price: 18000, badge: 'Signature Barista', origin: 'Aceh Gayo • Full Wash', desc: 'Double shot espresso Gayo, susu creamy, dan gula aren organik cair kental.', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80', rating: 4.9 },
+      { id: 'c2', name: 'Caramel Cloud Macchiato', category: 'espresso', price: 22000, badge: 'Favorit Sore', origin: 'House Blend (70:30)', desc: 'Layer vanila susu dingin, tuangan espresso kental, caramel drizzle pekat gurih.', img: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=600&q=80', rating: 4.9 },
+      { id: 'c3', name: 'Cold Brew Berry Citrus', category: 'espresso', price: 20000, origin: 'Flores Bajawa Single Origin', desc: 'Kopi seduh dingin lambat 16 jam dengan hint buah beri dan jeruk segar.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80', rating: 4.8 },
+      { id: 'c4', name: 'Oatmilk Latte Artisan', category: 'espresso', price: 24000, badge: 'Plant-Based', origin: 'Brazil Cerrado', desc: 'Double shot espresso dengan susu gandum (Oatmilk) gurih alami.', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80', rating: 4.9 },
+      { id: 'c5', name: 'Manual Brew V60 Flores Bajawa', category: 'espresso', price: 22000, origin: 'Flores Bajawa • Anaerobic', desc: 'Seduhan manual filter V60 dengan aroma karamel dan cokelat lembut.', img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80', rating: 5.0 },
+      { id: 'c6', name: 'Matcha Uji Latte Segar', category: 'noncoffee', price: 20000, desc: 'Pure ceremonial matcha dari Kyoto Jepang berpadu susu segar creamy.', img: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80', rating: 4.8 },
+      { id: 'c7', name: 'Belgian Dark Chocolate 70%', category: 'noncoffee', price: 20000, desc: 'Cokelat Belgia pekat 70% diseduh kental gurih, tidak terlalu manis.', img: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=600&q=80', rating: 4.8 },
+      { id: 'c8', name: 'Butter Croissant Flaky Renyah', category: 'pastry', price: 18000, badge: 'Baking Fresh', desc: 'Croissant khas Prancis dengan ratusan layer mentega wangi yang renyah bersarang.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80', rating: 4.9 },
+      { id: 'c9', name: 'Fudgy Sea Salt Brownies', category: 'pastry', price: 15000, desc: 'Brownies cokelat pekat chewy dengan taburan kristal garam laut gurih.', img: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80', rating: 4.8 },
+      { id: 'c10', name: 'Kopi Susu Literan (1 Liter Botol)', category: 'literan', price: 75000, badge: 'Stok Kulkas Hemat', desc: 'Botol 1 liter es kopi susu aren siap stok kulkas rumah atau sharing tim kantor.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80', rating: 5.0 },
+    ];
+
+    let selectedCustomId = 'c1';
+    let currentMilk = 'fresh';
+    let currentSugar = 'normal';
+    let currentIce = 'normal';
+    let hasExtraShot = false;
+
+    function renderBaseDrinks() {
+      const grid = document.getElementById('base-drinks-grid');
+      let html = '';
+      COFFEE_MENU.filter(m => m.category === 'espresso').forEach(drink => {
+        const isSel = drink.id === selectedCustomId;
+        html += `
+          <button onclick="setBaseDrink('${drink.id}')" class="cursor-pointer p-3 rounded-2xl border-2 text-left transition ${isSel ? 'bg-[#1E130D] text-white border-[#1E130D] shadow-[3px_3px_0_#C2612D]' : 'bg-[#FBF7F0] text-[#1E130D] border-[#1E130D]/20 hover:border-[#1E130D]'}">
+            <div class="font-extrabold text-xs line-clamp-1">${drink.name}</div>
+            <div class="text-[11px] opacity-80 mt-1">Rp ${drink.price.toLocaleString('id-ID')}</div>
+          </button>
+        `;
+      });
+      grid.innerHTML = html;
+      calculateCustomPrice();
+    }
+
+    function setBaseDrink(id) {
+      selectedCustomId = id;
+      renderBaseDrinks();
+    }
+
+    function setMilk(m) {
+      currentMilk = m;
+      document.getElementById('milk-fresh').className = 'p-2.5 rounded-xl text-xs font-bold border-2 ' + (m === 'fresh' ? 'bg-[#C2612D] text-white border-[#1E130D]' : 'bg-white text-[#1E130D] border-gray-300');
+      document.getElementById('milk-oat').className = 'p-2.5 rounded-xl text-xs font-bold border-2 ' + (m === 'oat' ? 'bg-[#C2612D] text-white border-[#1E130D]' : 'bg-white text-[#1E130D] border-gray-300');
+      calculateCustomPrice();
+    }
+
+    function setSugar(s) {
+      currentSugar = s;
+      ['normal', 'less', 'zero'].forEach(k => {
+        document.getElementById('sugar-' + k).className = 'p-2.5 rounded-xl text-xs font-bold border-2 ' + (k === s ? 'bg-[#1E130D] text-white border-[#1E130D]' : 'bg-white text-[#1E130D] border-gray-300');
+      });
+    }
+
+    function setIce(i) {
+      currentIce = i;
+      ['normal', 'less', 'hot'].forEach(k => {
+        document.getElementById('ice-' + k).className = 'p-2 rounded-xl text-xs font-bold border-2 ' + (k === i ? 'bg-[#1E130D] text-white border-[#1E130D]' : 'bg-white text-[#1E130D] border-gray-300');
+      });
+    }
+
+    function toggleExtraShot() {
+      hasExtraShot = !hasExtraShot;
+      const btn = document.getElementById('btn-extra-shot');
+      const check = document.getElementById('extra-shot-check');
+      if (hasExtraShot) {
+        btn.className = 'w-full cursor-pointer p-2.5 rounded-xl text-xs font-bold border-2 flex items-center justify-between bg-[#ECE3D4] border-[#1E130D] text-[#1E130D] shadow-xs';
+        check.className = 'w-4 h-4 rounded-full border-2 bg-[#C2612D] text-white border-[#1E130D] flex items-center justify-center text-[10px]';
+        check.innerText = '✓';
+      } else {
+        btn.className = 'w-full cursor-pointer p-2.5 rounded-xl text-xs font-bold border-2 flex items-center justify-between bg-white border-gray-300 text-gray-700';
+        check.className = 'w-4 h-4 rounded-full border-2 border-gray-400 flex items-center justify-center text-[10px]';
+        check.innerText = '';
+      }
+      calculateCustomPrice();
+    }
+
+    function calculateCustomPrice() {
+      const base = COFFEE_MENU.find(m => m.id === selectedCustomId) || COFFEE_MENU[0];
+      const milkAdd = currentMilk === 'oat' ? 4000 : 0;
+      const shotAdd = hasExtraShot ? 4000 : 0;
+      const total = base.price + milkAdd + shotAdd;
+      document.getElementById('custom-total-display').innerText = 'Rp ' + total.toLocaleString('id-ID');
+    }
+
+    function sendCustomOrderWA() {
+      const base = COFFEE_MENU.find(m => m.id === selectedCustomId) || COFFEE_MENU[0];
+      const milkAdd = currentMilk === 'oat' ? 4000 : 0;
+      const shotAdd = hasExtraShot ? 4000 : 0;
+      const total = base.price + milkAdd + shotAdd;
+
+      const milkTxt = currentMilk === 'oat' ? 'Oatmilk (+4K)' : 'Fresh Milk';
+      const sugarTxt = currentSugar === 'normal' ? 'Normal 100%' : currentSugar === 'less' ? 'Less 50%' : 'No Sugar 0%';
+      const iceTxt = currentIce === 'normal' ? 'Normal Ice' : currentIce === 'less' ? 'Less Ice' : 'Hot Cup';
+      const shotTxt = hasExtraShot ? 'Ekstra Shot (+4K)' : 'Standard Shot';
+
+      const msg = `Halo Titik Temu Coffee Bar! Mau pesan racikan barista:\n\n☕ *${base.name}* (Rp ${total.toLocaleString('id-ID')})\n• Susu: ${milkTxt}\n• Gula: ${sugarTxt}\n• Suhu/Es: ${iceTxt}\n• Espresso: ${shotTxt}\n\nAtas nama:\nAlamat kirim / Meja: `;
+      window.open(`https://wa.me/6287703397035?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function renderCatalog(filter = 'all') {
+      const container = document.getElementById('catalog-container');
+      const filtered = COFFEE_MENU.filter(m => filter === 'all' || m.category === filter);
+      let html = '';
+      filtered.forEach(item => {
+        html += `
+          <div class="bg-white rounded-3xl border-2 border-[#1E130D] shadow-[4px_4px_0_#1E130D] overflow-hidden flex flex-col justify-between p-3 sm:p-4 hover:shadow-[6px_6px_0_#C2612D] transition duration-200">
+            <div>
+              <div class="relative aspect-square rounded-2xl overflow-hidden border border-[#1E130D]/15 bg-[#ECE3D4] mb-2.5">
+                <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover hover:scale-105 transition duration-300" loading="lazy" />
+                ${item.badge ? `<span class="absolute top-2 left-2 bg-[#1E130D] text-[#ECE3D4] text-[10px] font-black px-2 py-0.5 rounded-full border border-white shadow-xs">${item.badge}</span>` : ''}
+                <span class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-xs">⭐ ${item.rating}</span>
+              </div>
+              <h3 class="font-extrabold text-xs sm:text-sm text-[#1E130D] line-clamp-1">${item.name}</h3>
+              ${item.origin ? `<div class="text-[10px] font-bold text-[#C2612D] line-clamp-1 mt-0.5">📍 ${item.origin}</div>` : ''}
+              <p class="text-[11px] text-[#6E5345] line-clamp-2 mt-1 leading-relaxed">${item.desc}</p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-[#1E130D]/10 flex items-center justify-between gap-1">
+              <div class="font-black text-xs sm:text-sm text-[#1E130D]">Rp ${item.price.toLocaleString('id-ID')}</div>
+              <button onclick="orderItemWA('${item.name}', ${item.price})" class="cursor-pointer bg-[#C2612D] hover:bg-[#A84F20] text-white px-3 py-1 rounded-full text-xs font-extrabold border border-[#1E130D] shadow-xs active:scale-95 transition">+ Pesan</button>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function filterCatalog(cat) {
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = 'cat-pill px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-[#1E130D] text-white shadow-[2px_2px_0_#C2612D]';
+        } else {
+          btn.className = 'cat-pill px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-white text-[#1E130D] border border-[#1E130D]/20';
+        }
+      });
+      renderCatalog(cat);
+    }
+
+    function orderItemWA(name, price) {
+      const msg = `Halo Barista Titik Temu! Mau pesan 1x *${name}* (Rp ${price.toLocaleString('id-ID')}).\n\nBisa diantar jam berapa yaa? Terima kasih!`;
+      window.open(`https://wa.me/6287703397035?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function repeatOrderWA() {
+      const msg = `Halo Barista Titik Temu! Mau pesan ulang kopi favorit kemarin (Es Kopi Susu Titik Temu - Less Sugar) via scan sleeve cup yaa!`;
+      window.open(`https://wa.me/6287703397035?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function openQrModal() {
+      document.getElementById('qr-modal').classList.remove('hidden');
+    }
+
+    function closeQrModal() {
+      document.getElementById('qr-modal').classList.add('hidden');
+    }
+
+    // Initialize on load
+    renderBaseDrinks();
+    renderCatalog('all');
+  </script>
+
+<!-- Floating Back Button to Portfolio -->
+<a href="../index.html" class="no-print" style="position:fixed;bottom:20px;left:20px;z-index:999999;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:#111827;color:#ffffff;border-radius:9999px;font-family:'Plus Jakarta Sans',sans-serif,system-ui;font-size:12px;font-weight:700;text-decoration:none;box-shadow:0 10px 25px -5px rgba(0,0,0,0.3);border:2px solid #ffffff;cursor:pointer;transition:all 0.2s ease;" onmouseover="this.style.background='#4F46E5';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#111827';this.style.transform='translateY(0)'">
+  <span style="font-size:14px;">←</span> Kembali ke Portofolio Mas Dhodhy
+</a>
+
+</body>
+</html>

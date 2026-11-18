@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fluffy Donut & Bakery — Adonan Kentang Lumer Harian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              pink: '#FF4D79',
+              dark: '#2B141E',
+              yellow: '#FFD166',
+              bg: '#FFF5F7',
+              muted: '#7D4D5F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FFF5F7;
+      color: #2B141E;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .sprinkle-bg {
+      background-image: radial-gradient(#FFB6C1 1.2px, transparent 1.2px), radial-gradient(#FFD166 1.2px, #FFF5F7 1.2px);
+      background-size: 36px 36px;
+      background-position: 0 0, 18px 18px;
+    }
+  </style>
+</head>
+<body class="sprinkle-bg min-h-screen pb-24 selection:bg-[#FF4D79] selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-40 bg-[#FFF5F7]/90 backdrop-blur-md border-b-2 border-[#2B141E]/10">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-2xl bg-[#FF4D79] text-white flex items-center justify-center text-xl shadow-[2px_2px_0_#2B141E] border-2 border-[#2B141E] -rotate-3">
+          🍩
+        </div>
+        <div>
+          <div class="font-extrabold text-lg sm:text-xl tracking-tight leading-none text-[#2B141E] flex items-center gap-1.5">
+            <span>Fluffy Donut</span>
+            <span class="text-[10px] font-bold bg-[#FFD166] text-[#2B141E] px-2 py-0.5 rounded-full border border-[#2B141E] uppercase">
+              Bakery
+            </span>
+          </div>
+          <p class="text-[11px] text-[#7D4D5F] font-medium">Adonan kentang lumer harian • Sidoarjo</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <button onclick="openQrModal()" class="cursor-pointer px-3 py-1.5 rounded-full bg-white text-[#2B141E] border-2 border-[#2B141E] text-xs font-bold shadow-[2px_2px_0_#2B141E] hover:bg-[#FFF0F4] transition flex items-center gap-1.5">
+          <span>🏷️</span>
+          <span class="hidden sm:inline">QR Kotak Donat</span>
+        </button>
+
+        <a href="#box-builder" class="cursor-pointer px-3.5 py-1.5 rounded-full bg-[#FF4D79] text-white border-2 border-[#2B141E] text-xs font-bold shadow-[2px_2px_0_#2B141E] hover:bg-[#E83764] transition flex items-center gap-1.5">
+          <span>📦</span>
+          <span>Bikin Box Kado</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-5xl mx-auto px-4 pt-6 space-y-12">
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-white rounded-[32px] border-3 border-[#2B141E] shadow-[8px_8px_0_#2B141E] p-6 sm:p-10 overflow-hidden">
+      <div class="absolute -top-7 -right-7 w-28 h-28 bg-[#FFD166] rotate-45 border-b-2 border-[#2B141E] flex items-end justify-center pb-1">
+        <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#2B141E]">Fresh 100%</span>
+      </div>
+
+      <div class="grid md:grid-cols-[1.1fr_0.9fr] gap-8 items-center">
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 bg-[#FFF0F4] text-[#FF4D79] border-2 border-[#FF4D79] px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-[#FF4D79] animate-ping"></span>
+            <span>Baking Fresh Jam 6 Pagi • Habis Jam 8 Malam</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-black leading-[1.08] tracking-tight text-[#2B141E]">
+            Hari burukmu kelar di <span class="text-[#FF4D79] underline decoration-[#FFD166] decoration-4 underline-offset-4">gigitan pertama.</span> 🍩✨
+          </h1>
+
+          <p class="text-sm sm:text-base text-[#7D4D5F] leading-relaxed font-medium">
+            Gak semua masalah hidup harus diselesaikan pakai mikir keras. Kadang tubuhmu cuma butuh donat kentang super empuk dengan lumuran cokelat Belgia dan glaze manis yang meleleh di lidah.
+          </p>
+
+          <div class="flex flex-wrap gap-2 pt-1 text-xs font-bold">
+            <span class="bg-[#FFF5F7] border border-[#2B141E]/20 px-3 py-1 rounded-full">🥔 Kentang Asli Pilihan</span>
+            <span class="bg-[#FFF5F7] border border-[#2B141E]/20 px-3 py-1 rounded-full">⏰ Proofing 12 Jam</span>
+            <span class="bg-[#FFF5F7] border border-[#2B141E]/20 px-3 py-1 rounded-full">🍫 Cokelat Belgia Lumer</span>
+          </div>
+
+          <div class="pt-2 flex flex-wrap items-center gap-3">
+            <a href="#box-builder" class="cursor-pointer bg-[#FF4D79] hover:bg-[#E83764] text-white px-6 py-3 rounded-full font-bold text-sm border-2 border-[#2B141E] shadow-[4px_4px_0_#2B141E] active:translate-y-0.5 transition flex items-center gap-2">
+              <span>📦</span>
+              <span>Rancang Box Kado (Isi 6) - 52K</span>
+            </a>
+            <a href="#menu-catalog" class="cursor-pointer bg-white hover:bg-gray-50 text-[#2B141E] px-5 py-3 rounded-full font-bold text-sm border-2 border-[#2B141E] shadow-[3px_3px_0_#2B141E] active:translate-y-0.5 transition">
+              Lihat Semua Varian
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT ANIMATED DONUT -->
+        <div class="flex justify-center">
+          <div class="relative w-64 sm:w-76 aspect-square bg-[#FFF0F4] rounded-[36px] border-3 border-[#2B141E] p-4 shadow-[6px_6px_0_#2B141E] rotate-2 flex flex-col justify-between overflow-hidden">
+            <div class="flex items-center justify-between text-xs font-bold">
+              <span class="bg-[#FFD166] text-[#2B141E] px-2.5 py-0.5 rounded-full border border-[#2B141E]">⭐ 4.9 • 1.4k Ulasan</span>
+              <span class="text-[#FF4D79]">Sidoarjo Kota</span>
+            </div>
+
+            <div class="relative my-auto flex items-center justify-center">
+              <svg viewBox="0 0 200 200" class="w-48 h-48 drop-shadow-xl animate-pulse">
+                <circle cx="100" cy="100" r="75" fill="#E8A856" stroke="#2B141E" stroke-width="6"/>
+                <path d="M 35 125 A 75 75 0 0 0 165 125 A 75 75 0 0 1 35 125" fill="#C98436" opacity="0.35"/>
+                <path d="M 100 30 C 130 30, 165 50, 170 85 C 175 110, 160 145, 135 165 C 110 180, 75 175, 50 155 C 25 130, 30 90, 45 60 C 60 35, 80 30, 100 30 Z" fill="#FF4D79" stroke="#2B141E" stroke-width="5"/>
+                <circle cx="100" cy="100" r="28" fill="#FFF0F4" stroke="#2B141E" stroke-width="6"/>
+                <path d="M 60 55 C 80 42, 115 42, 135 52" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+                <rect x="75" y="60" width="8" height="3" rx="1.5" fill="#FFD166" transform="rotate(25 75 60)"/>
+                <rect x="120" y="65" width="8" height="3" rx="1.5" fill="#FFFFFF" transform="rotate(-30 120 65)"/>
+                <rect x="145" y="95" width="8" height="3" rx="1.5" fill="#FFD166" transform="rotate(45 145 95)"/>
+                <rect x="135" y="130" width="8" height="3" rx="1.5" fill="#FFFFFF" transform="rotate(-20 135 130)"/>
+                <rect x="80" y="145" width="8" height="3" rx="1.5" fill="#FFD166" transform="rotate(15 80 145)"/>
+              </svg>
+            </div>
+
+            <div class="bg-white rounded-2xl p-2.5 border-2 border-[#2B141E] text-center shadow-xs">
+              <div class="font-extrabold text-xs text-[#2B141E]">Strawberry Glazed Fluffy Kentang</div>
+              <div class="text-[10px] text-[#7D4D5F] font-bold">Diproduksi fresh tiap 3 jam sekali</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: INTERACTIVE CUSTOM BOX BUILDER -->
+    <section id="box-builder" class="scroll-mt-24 space-y-4">
+      <div class="bg-gradient-to-br from-[#FFF0F4] via-white to-[#FFF5F7] rounded-[32px] border-3 border-[#2B141E] shadow-[8px_8px_0_#2B141E] p-6 sm:p-8 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b-2 border-[#2B141E]/10 pb-4">
+          <div>
+            <div class="inline-flex items-center gap-1.5 bg-[#FFD166] text-[#2B141E] px-3 py-0.5 rounded-full text-[11px] font-extrabold uppercase border border-[#2B141E]">
+              🎁 Paling Laris Buat Hadiah & Traktiran
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black text-[#2B141E] mt-1">Rancang Dus Donat Pilihanmu Sendiri</h2>
+            <p class="text-xs sm:text-sm text-[#7D4D5F]">Pilih varian rasa donat favoritmu, dikemas rapi dalam dus kado berpita manis.</p>
+          </div>
+
+          <div class="inline-flex p-1 bg-white border-2 border-[#2B141E] rounded-full shadow-[2px_2px_0_#2B141E] shrink-0">
+            <button id="btn-box-6" onclick="setBoxCapacity(6)" class="cursor-pointer px-4 py-1.5 rounded-full text-xs font-extrabold transition bg-[#FF4D79] text-white">
+              Box Isi 6 (Rp 52K)
+            </button>
+            <button id="btn-box-12" onclick="setBoxCapacity(12)" class="cursor-pointer px-4 py-1.5 rounded-full text-xs font-extrabold transition text-[#2B141E]/70 hover:text-[#2B141E]">
+              Box Isi 12 (Rp 98K Party)
+            </button>
+          </div>
+        </div>
+
+        <!-- VISUAL TRAY SLOTS -->
+        <div class="bg-[#FFF8E7] rounded-3xl p-5 border-2 border-[#2B141E] shadow-[3px_3px_0_#2B141E] space-y-3">
+          <div class="flex items-center justify-between text-xs font-extrabold">
+            <span class="text-[#2B141E] flex items-center gap-1.5">
+              <span>📦</span>
+              <span id="box-status-text">Isi Dus: 0 dari 6 Donat</span>
+            </span>
+            <span id="box-badge-text" class="bg-amber-100 text-amber-900 px-3 py-0.5 rounded-full border border-amber-300">
+              Pilih donat di bawah untuk mengisi dus!
+            </span>
+          </div>
+
+          <!-- Slots Container -->
+          <div id="slots-container" class="grid grid-cols-3 sm:grid-cols-6 gap-2.5">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- FLAVOR PICKER -->
+        <div class="space-y-2">
+          <label class="block text-xs font-extrabold uppercase tracking-wider text-[#7D4D5F]">
+            Klik Varian untuk Ditambahkan ke Dus:
+          </label>
+          <div id="box-picker-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- RIBBON & CARD -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t-2 border-[#2B141E]/10">
+          <div>
+            <label class="block text-xs font-extrabold text-[#7D4D5F] mb-1.5">Pita Dus Kado:</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setRibbon('pink')" id="ribbon-pink" class="py-1.5 px-2 rounded-xl text-xs font-bold border-2 bg-[#FF4D79] text-white border-[#2B141E]">🎀 Pink</button>
+              <button onclick="setRibbon('gold')" id="ribbon-gold" class="py-1.5 px-2 rounded-xl text-xs font-bold border-2 bg-white text-[#2B141E] border-gray-300">🎗️ Gold</button>
+              <button onclick="setRibbon('polos')" id="ribbon-polos" class="py-1.5 px-2 rounded-xl text-xs font-bold border-2 bg-white text-[#2B141E] border-gray-300">📦 Polos</button>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-extrabold text-[#7D4D5F] mb-1.5">Tulis Kartu Ucapan Singkat (Gratis):</label>
+            <input type="text" id="gift-card-input" placeholder="Contoh: Selamat ulang tahun Amanda! Semangat yaa ♡" class="w-full bg-white border-2 border-[#2B141E] rounded-xl px-3 py-1.5 text-xs focus:outline-none focus:border-[#FF4D79]">
+          </div>
+        </div>
+
+        <!-- ACTION BAR -->
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 bg-[#FFF0F4] rounded-2xl p-4 border border-[#FF4D79]/30">
+          <div>
+            <div class="text-xs text-[#7D4D5F]">Harga 1 Paket Dus:</div>
+            <div id="box-price-display" class="text-2xl font-black text-[#2B141E]">Rp 52.000</div>
+          </div>
+          <button id="btn-submit-box" onclick="sendBoxOrderWhatsApp()" class="w-full sm:w-auto cursor-pointer bg-[#FF4D79] hover:bg-[#E83764] text-white font-extrabold text-sm px-7 py-3 rounded-full border-2 border-[#2B141E] shadow-[4px_4px_0_#2B141E] transition flex items-center justify-center gap-2">
+            <span>💬</span>
+            <span id="btn-box-text">Pesan Box via WhatsApp</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: ETALASE MENU SATUAN -->
+    <section id="menu-catalog" class="scroll-mt-24 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b-2 border-[#2B141E]/10 pb-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 bg-[#FFF0F4] text-[#FF4D79] px-3 py-0.5 rounded-full text-[11px] font-extrabold uppercase border border-[#FF4D79]/40">
+            🍩 Etalase Donat & Minuman
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-[#2B141E] mt-1">Pilih Satuan atau Tambah Minuman</h2>
+        </div>
+
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
+          <button onclick="filterCatalog('all')" class="cat-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-[#2B141E] text-white shadow-[2px_2px_0_#FF4D79]" data-cat="all">✨ Semua</button>
+          <button onclick="filterCatalog('artisan')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-white text-[#2B141E] border border-[#2B141E]/20" data-cat="artisan">🍩 Artisan</button>
+          <button onclick="filterCatalog('bomboloni')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-white text-[#2B141E] border border-[#2B141E]/20" data-cat="bomboloni">🧁 Bomboloni</button>
+          <button onclick="filterCatalog('beverage')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-white text-[#2B141E] border border-[#2B141E]/20" data-cat="beverage">🧋 Minuman</button>
+        </div>
+      </div>
+
+      <!-- Catalog Cards Container -->
+      <div id="catalog-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- SECTION 4: SMART PACKAGING QR -->
+    <section class="bg-[#2B141E] text-white rounded-[32px] p-6 sm:p-10 border-3 border-[#2B141E] shadow-[8px_8px_0_#FF4D79] space-y-6">
+      <div class="grid md:grid-cols-[1.1fr_0.9fr] gap-8 items-center">
+        <div class="space-y-4">
+          <span class="bg-[#FFD166] text-[#2B141E] px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider border border-white">
+            📱 Solusi UMKM Cerdas
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black text-white leading-tight">
+            Stiker Barcode di Tutup Dus: Sekali Scan Langsung Kirim Kado Lagi!
+          </h2>
+          <p class="text-sm text-white/80 leading-relaxed">
+            Setiap kotak Fluffy Donut dilengkapi stiker QR estetik. Pelanggan tinggal scan pakai kamera HP, sistem otomatis mengingat nama & alamat pengiriman. Bisa 1-klik repeat order atau kirim hampers ke teman tanpa perlu install aplikasi ribet.
+          </p>
+          <div class="pt-1">
+            <button onclick="openQrModal()" class="cursor-pointer bg-[#FFD166] hover:bg-amber-300 text-[#2B141E] font-black text-xs sm:text-sm px-6 py-2.5 rounded-full border-2 border-white shadow-[3px_3px_0_white] transition">
+              Simulasikan Scan Stiker Dus 📱
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white text-[#2B141E] rounded-3xl p-6 border-3 border-white shadow-xl text-center space-y-3 rotate-1">
+          <div class="text-xs font-black uppercase tracking-wider text-[#FF4D79]">KARTU QR KEMASAN FLUFFY</div>
+          <div class="w-36 h-36 mx-auto bg-[#FFF0F4] rounded-2xl border-2 border-[#2B141E] grid place-items-center text-4xl">
+            🍩
+          </div>
+          <div class="font-mono text-xs font-extrabold text-[#2B141E]">ID: FLUFFY-BOX-088</div>
+          <p class="text-[11px] text-[#7D4D5F]">“Halo Fluffy! Kirim Box isi 6 donat cokelat & matcha ke kantor yaa!”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-8 border-t-2 border-[#2B141E]/15 text-center text-xs text-[#7D4D5F] space-y-3">
+      <div class="flex items-center justify-center gap-2">
+        <span class="font-extrabold text-sm text-[#2B141E]">Fluffy Donut & Bakery</span>
+        <span>•</span>
+        <span>Sidoarjo, Jawa Timur</span>
+        <span>•</span>
+        <span class="font-bold text-[#FF4D79]">Buka Tiap Hari 07.00 - 20.30 WIB</span>
+      </div>
+      <p>© 2026 Fluffy Donut & Bakery. Adonan kentang asli dengan wajan bersih & glaze manis lumer.</p>
+    </footer>
+  </main>
+
+  <!-- QR MODAL POPUP -->
+  <div id="qr-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border-3 border-[#2B141E] p-6 max-w-sm w-full shadow-[8px_8px_0_#FF4D79] space-y-4 text-center">
+      <div class="w-12 h-12 rounded-full bg-[#FFD166] border-2 border-[#2B141E] grid place-items-center text-2xl mx-auto">
+        🍩
+      </div>
+      <h3 class="font-black text-xl text-[#2B141E]">Halo Kak Amanda! Senang Bertemu Lagi!</h3>
+      <p class="text-xs text-[#7D4D5F]">Kamu memindai stiker QR kemasan box donat. Varian favoritmu sebelumnya: <strong>Choco Belgian + Lotus Biscoff</strong>.</p>
+      
+      <div class="bg-[#FFF0F4] rounded-2xl p-3 border border-[#FF4D79]/30 text-left text-xs space-y-1">
+        <div class="font-bold text-[#2B141E]">👑 Status Loyalitas:</div>
+        <div class="text-[#FF4D79] font-extrabold">Sahabat Manis Fluffy (4/5 Box)</div>
+        <div class="text-[11px] text-gray-600">Beli 1 box lagi untuk dapat 1 box mini gratis!</div>
+      </div>
+
+      <button onclick="repeatOrderWA()" class="w-full cursor-pointer bg-[#FF4D79] hover:bg-[#E83764] text-white py-2.5 rounded-full font-extrabold text-xs border-2 border-[#2B141E] shadow-[2px_2px_0_#2B141E] transition">
+        Ulangi Pesanan Kotak Kemarin via WA 💬
+      </button>
+
+      <button onclick="closeQrModal()" class="text-xs text-gray-500 hover:text-black font-bold cursor-pointer">
+        Tutup
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const DONUTS = [
+      { id: 'd1', name: 'Glazed Classic Honey Dip', category: 'artisan', price: 8500, badge: 'Best Seller', desc: 'Donat kentang empuk glaze madu tipis renyah lumer.', color: '#FFE7B3', img: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=600&q=80', rating: 4.9 },
+      { id: 'd2', name: 'Choco Belgian Crispy Pearls', category: 'artisan', price: 9500, badge: 'Favorit', desc: 'Cokelat Belgia pekat 70% lumer bertabur crispy pearls gurih.', color: '#4A2818', img: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80', rating: 4.9 },
+      { id: 'd3', name: 'Matcha Kyoto Roasted Almond', category: 'artisan', price: 10000, desc: 'Glaze matcha asli Jepang berpadu kacang almond sangrai.', color: '#8EAA59', img: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=600&q=80', rating: 4.8 },
+      { id: 'd4', name: 'Lotus Biscoff Caramel Crunch', category: 'artisan', price: 11000, badge: 'Viral', desc: 'Selai Lotus Biscoff karamel dengan remahan biskuit renyah.', color: '#C4814A', img: 'https://images.unsplash.com/photo-1626094309830-abbb0c97da56?auto=format&fit=crop&w=600&q=80', rating: 4.9 },
+      { id: 'd5', name: 'Red Velvet Cream Cheese', category: 'artisan', price: 11500, desc: 'Adonan red velvet ruby dengan topping cream cheese gurih.', color: '#9E2A2B', img: 'https://images.unsplash.com/photo-1612240498936-65f5101365d2?auto=format&fit=crop&w=600&q=80', rating: 4.8 },
+      { id: 'd6', name: 'Tiramisu Regal Melt', category: 'artisan', price: 10000, desc: 'Krim tiramisu wangi aroma kopi dengan taburan biskuit Marie Regal.', color: '#D4B895', img: 'https://images.unsplash.com/photo-1514517521153-1be72277b32f?auto=format&fit=crop&w=600&q=80', rating: 4.8 },
+      { id: 'd7', name: 'Bomboloni Nutella Molten', category: 'bomboloni', price: 12000, badge: 'Lumer Pol', desc: 'Donat bantal tanpa lubang berisi selai Nutella murni melimpah!', color: '#3D1C06', img: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80', rating: 5.0 },
+      { id: 'd8', name: 'Bomboloni Salted Caramel', category: 'bomboloni', price: 11000, desc: 'Custard vanilla lembut Prancis dengan saus salted caramel gurih.', color: '#E29547', img: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80', rating: 4.8 },
+      { id: 'd9', name: 'Iced Strawberry Milk Tea', category: 'beverage', price: 14000, desc: 'Susu segar berpadu selai strawberry homemade buah asli.', color: '#FF6B8B', img: 'https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=600&q=80', rating: 4.8 },
+      { id: 'd10', name: 'Iced Dark Belgian Cocoa', category: 'beverage', price: 15000, desc: 'Minuman cokelat kental pekat dingin topping foam susu lembut.', color: '#2B141E', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80', rating: 4.9 },
+    ];
+
+    let currentCapacity = 6;
+    let boxSelections = { d1: 2, d2: 2, d4: 1, d7: 1 };
+    let currentRibbon = 'pink';
+
+    function setBoxCapacity(cap) {
+      currentCapacity = cap;
+      document.getElementById('btn-box-6').className = cap === 6 ? 'cursor-pointer px-4 py-1.5 rounded-full text-xs font-extrabold transition bg-[#FF4D79] text-white' : 'cursor-pointer px-4 py-1.5 rounded-full text-xs font-extrabold transition text-[#2B141E]/70 hover:text-[#2B141E]';
+      document.getElementById('btn-box-12').className = cap === 12 ? 'cursor-pointer px-4 py-1.5 rounded-full text-xs font-extrabold transition bg-[#FF4D79] text-white' : 'cursor-pointer px-4 py-1.5 rounded-full text-xs font-extrabold transition text-[#2B141E]/70 hover:text-[#2B141E]';
+      document.getElementById('box-price-display').innerText = cap === 6 ? 'Rp 52.000' : 'Rp 98.000';
+      renderBox();
+    }
+
+    function addDonut(id) {
+      const total = Object.values(boxSelections).reduce((a, b) => a + b, 0);
+      if (total >= currentCapacity) return;
+      boxSelections[id] = (boxSelections[id] || 0) + 1;
+      renderBox();
+    }
+
+    function removeDonut(id) {
+      if (!boxSelections[id] || boxSelections[id] <= 0) return;
+      boxSelections[id]--;
+      if (boxSelections[id] <= 0) delete boxSelections[id];
+      renderBox();
+    }
+
+    function setRibbon(r) {
+      currentRibbon = r;
+      ['pink', 'gold', 'polos'].forEach(k => {
+        const btn = document.getElementById('ribbon-' + k);
+        if (k === r) {
+          btn.className = 'py-1.5 px-2 rounded-xl text-xs font-bold border-2 ' + (k === 'pink' ? 'bg-[#FF4D79] text-white border-[#2B141E]' : k === 'gold' ? 'bg-[#FFD166] text-[#2B141E] border-[#2B141E]' : 'bg-[#2B141E] text-white border-[#2B141E]');
+        } else {
+          btn.className = 'py-1.5 px-2 rounded-xl text-xs font-bold border-2 bg-white text-[#2B141E] border-gray-300';
+        }
+      });
+    }
+
+    function renderBox() {
+      const total = Object.values(boxSelections).reduce((a, b) => a + b, 0);
+      document.getElementById('box-status-text').innerText = `Isi Dus: ${total} dari ${currentCapacity} Donat`;
+      
+      const badge = document.getElementById('box-badge-text');
+      const btn = document.getElementById('btn-submit-box');
+      if (total === currentCapacity) {
+        badge.className = 'bg-emerald-100 text-emerald-800 px-3 py-0.5 rounded-full border border-emerald-300';
+        badge.innerText = '✓ Dus Lengkap & Siap Diikat Pita!';
+        btn.disabled = false;
+        btn.className = 'w-full sm:w-auto cursor-pointer bg-[#FF4D79] hover:bg-[#E83764] text-white font-extrabold text-sm px-7 py-3 rounded-full border-2 border-[#2B141E] shadow-[4px_4px_0_#2B141E] transition flex items-center justify-center gap-2';
+      } else {
+        badge.className = 'bg-amber-100 text-amber-900 px-3 py-0.5 rounded-full border border-amber-300';
+        badge.innerText = `Kurang ${currentCapacity - total} donat lagi`;
+        btn.disabled = true;
+        btn.className = 'w-full sm:w-auto opacity-50 cursor-not-allowed bg-gray-400 text-white font-extrabold text-sm px-7 py-3 rounded-full border-2 border-gray-600 transition flex items-center justify-center gap-2';
+      }
+
+      // Flatten items into array for slots
+      const flattened = [];
+      Object.entries(boxSelections).forEach(([id, qty]) => {
+        const item = DONUTS.find(d => d.id === id);
+        if (item) {
+          for (let i = 0; i < qty; i++) flattened.push(item);
+        }
+      });
+
+      // Render slots
+      const slotsContainer = document.getElementById('slots-container');
+      let slotsHtml = '';
+      for (let i = 0; i < currentCapacity; i++) {
+        const item = flattened[i];
+        if (item) {
+          slotsHtml += `
+            <div class="aspect-square rounded-2xl border-2 bg-white border-[#2B141E] shadow-[2px_2px_0_#2B141E] flex flex-col items-center justify-center p-2 text-center">
+              <div class="w-8 h-8 rounded-full border-2 border-[#2B141E] flex items-center justify-center text-sm mb-1" style="background-color: ${item.color}">🍩</div>
+              <span class="text-[10px] font-extrabold text-[#2B141E] truncate w-full">${item.name.split(' ')[0]}</span>
+            </div>
+          `;
+        } else {
+          slotsHtml += `
+            <div class="aspect-square rounded-2xl border-2 border-dashed border-[#2B141E]/30 bg-white/40 flex items-center justify-center text-gray-400 text-xl">
+              ＋
+            </div>
+          `;
+        }
+      }
+      slotsContainer.innerHTML = slotsHtml;
+
+      // Render picker grid
+      const pickerGrid = document.getElementById('box-picker-grid');
+      let pickerHtml = '';
+      DONUTS.filter(d => d.category !== 'beverage').forEach(item => {
+        const count = boxSelections[item.id] || 0;
+        pickerHtml += `
+          <div class="bg-white rounded-2xl p-3 border-2 border-[#2B141E] flex items-center justify-between gap-2 shadow-xs">
+            <div class="min-w-0">
+              <div class="font-extrabold text-xs text-[#2B141E] truncate">${item.name}</div>
+              <div class="text-[10px] text-[#7D4D5F]">Rp ${item.price.toLocaleString('id-ID')}</div>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button onclick="removeDonut('${item.id}')" ${count <= 0 ? 'disabled' : ''} class="w-6 h-6 rounded-full bg-gray-100 disabled:opacity-30 border border-[#2B141E]/40 font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+              <span class="font-mono font-bold text-xs w-4 text-center">${count}</span>
+              <button onclick="addDonut('${item.id}')" ${total >= currentCapacity ? 'disabled' : ''} class="w-6 h-6 rounded-full bg-[#FFD166] disabled:opacity-30 border border-[#2B141E] font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+            </div>
+          </div>
+        `;
+      });
+      pickerGrid.innerHTML = pickerHtml;
+    }
+
+    function renderCatalog(filter = 'all') {
+      const container = document.getElementById('catalog-container');
+      const filtered = DONUTS.filter(d => filter === 'all' || d.category === filter);
+      let html = '';
+      filtered.forEach(item => {
+        html += `
+          <div class="bg-white rounded-3xl border-2 border-[#2B141E] shadow-[4px_4px_0_#2B141E] overflow-hidden flex flex-col justify-between p-3 sm:p-4 hover:shadow-[6px_6px_0_#FF4D79] transition duration-200">
+            <div>
+              <div class="relative aspect-square rounded-2xl overflow-hidden border border-[#2B141E]/15 bg-[#FFF0F4] mb-2.5">
+                <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover hover:scale-105 transition duration-300" loading="lazy" />
+                ${item.badge ? `<span class="absolute top-2 left-2 bg-[#FFD166] text-[#2B141E] text-[10px] font-black px-2 py-0.5 rounded-full border border-[#2B141E] shadow-xs">${item.badge}</span>` : ''}
+                <span class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-xs">⭐ ${item.rating}</span>
+              </div>
+              <h3 class="font-extrabold text-xs sm:text-sm text-[#2B141E] line-clamp-1">${item.name}</h3>
+              <p class="text-[11px] text-[#7D4D5F] line-clamp-2 mt-1 leading-relaxed">${item.desc}</p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-[#2B141E]/10 flex items-center justify-between gap-1">
+              <div class="font-black text-xs sm:text-sm text-[#2B141E]">Rp ${item.price.toLocaleString('id-ID')}</div>
+              <button onclick="orderSingleWA('${item.name}', ${item.price})" class="cursor-pointer bg-[#FF4D79] hover:bg-[#E83764] text-white px-3 py-1 rounded-full text-xs font-extrabold border border-[#2B141E] shadow-xs active:scale-95 transition">+ Pesan</button>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function filterCatalog(cat) {
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = 'cat-pill px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-[#2B141E] text-white shadow-[2px_2px_0_#FF4D79]';
+        } else {
+          btn.className = 'cat-pill px-3.5 py-1.5 rounded-full text-xs font-extrabold transition bg-white text-[#2B141E] border border-[#2B141E]/20';
+        }
+      });
+      renderCatalog(cat);
+    }
+
+    function sendBoxOrderWhatsApp() {
+      const total = Object.values(boxSelections).reduce((a, b) => a + b, 0);
+      if (total < currentCapacity) return;
+      const details = Object.entries(boxSelections).map(([id, q]) => {
+        const item = DONUTS.find(d => d.id === id);
+        return `${q}x ${item.name}`;
+      }).join(', ');
+      const gift = document.getElementById('gift-card-input').value.trim();
+      const price = currentCapacity === 6 ? '52.000' : '98.000';
+      const msg = `Halo Fluffy Donut & Bakery! Mau pesan *Box of ${currentCapacity} Donat* (Rp ${price}):\n\n🍩 Isian Box:\n${details}\n🎀 Pita: ${currentRibbon}${gift ? `\n💌 Kartu Ucapan: "${gift}"` : ''}\n\nAtas nama:\nAlamat kirim: `;
+      window.open(`https://wa.me/6287703397035?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function orderSingleWA(name, price) {
+      const msg = `Halo Fluffy Donut! Saya mau pesan 1x *${name}* (Rp ${price.toLocaleString('id-ID')}).\n\nBisa dikirim jam berapa yaa? Terima kasih!`;
+      window.open(`https://wa.me/6287703397035?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function repeatOrderWA() {
+      const msg = `Halo Fluffy Donut! Mau pesan ulang Box of 6 varian kemarin (Choco Belgian + Lotus Biscoff) via stiker scan QR dus yaa!`;
+      window.open(`https://wa.me/6287703397035?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function openQrModal() {
+      document.getElementById('qr-modal').classList.remove('hidden');
+    }
+
+    function closeQrModal() {
+      document.getElementById('qr-modal').classList.add('hidden');
+    }
+
+    // Initialize on load
+    setBoxCapacity(6);
+    renderCatalog('all');
+  </script>
+
+<!-- Floating Back Button to Portfolio -->
+<a href="../index.html" class="no-print" style="position:fixed;bottom:20px;left:20px;z-index:999999;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:#111827;color:#ffffff;border-radius:9999px;font-family:'Plus Jakarta Sans',sans-serif,system-ui;font-size:12px;font-weight:700;text-decoration:none;box-shadow:0 10px 25px -5px rgba(0,0,0,0.3);border:2px solid #ffffff;cursor:pointer;transition:all 0.2s ease;" onmouseover="this.style.background='#4F46E5';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#111827';this.style.transform='translateY(0)'">
+  <span style="font-size:14px;">←</span> Kembali ke Portofolio Mas Dhodhy
+</a>
+
+</body>
+</html>
